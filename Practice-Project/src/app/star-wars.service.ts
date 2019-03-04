@@ -1,6 +1,10 @@
 import { LogService } from './log.service';
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
+import 'rxjs/add/operator/map';
+import { Observable } from 'rxjs';
+
+import 'rxjs/add/operator/catch';
 
 import { HttpClient } from '@angular/common/http';
 import { Response } from 'selenium-webdriver/http';
@@ -22,11 +26,22 @@ export class StarWarsService {
   }
 
   fetchCharacters() {
-    this.HttpClient.get('https://swapi.co/api/people/').subscribe(
-      (response: Response) => {
-        console.log(response);
+    this.HttpClient.get('https://swapi.co/api/people/')
+    .map((response: Response ) => {
+      const data = response;
+      const extractedChars = data.results;
+      const chars = extractedChars.map((char) => {
+             return {name: char.name, side: ''};
+          });
+      return chars;
+    })
+    .subscribe(
+      (data) => {
+        console.log(data);
+        this.characters = data;
+        this.charactersChanged.next();
       }
-    )
+    );
   }
 
   getCharacters(chosenList) {
