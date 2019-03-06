@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { StarWarsService } from '../star-wars.service';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-create-character',
@@ -15,6 +16,7 @@ export class CreateCharacterComponent implements OnInit {
 
   swService: StarWarsService;
   defaultName = 'Star Wars Characters';
+  showMsg = false;
 
   constructor(swService: StarWarsService) {
     this.swService = swService;
@@ -29,6 +31,7 @@ export class CreateCharacterComponent implements OnInit {
     }
     console.log(submittedForm);
     this.swService.addCharacter(submittedForm.value.name, submittedForm.value.side);
+    this.showMsg = true; // Karakter eklendiğinde başarılı mesajı için
   }
 
 }

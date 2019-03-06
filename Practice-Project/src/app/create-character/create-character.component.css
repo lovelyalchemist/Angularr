@@ -1,3 +1,9 @@
 input.ng-invalid.ng-touched {
   border: 1px solid red;
 }
+.message-success {
+  padding: 8px;
+  border: 1px solid yellowgreen;
+  border-radius: 6px;
+  margin: 8px;
+}

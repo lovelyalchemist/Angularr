@@ -18,18 +18,19 @@ export class StarWarsService {
 
   private logService: LogService;
   charactersChanged = new Subject<void>();
-  HttpClient: HttpClient;
+  http: HttpClient;
 // subject bir object reactiveden
-  constructor(logService: LogService, HttpClient: HttpClient) {
+  // tslint:disable-next-line:no-shadowed-variable
+  constructor(logService: LogService, Http: HttpClient) {
     this.logService = logService;
-    this.HttpClient = HttpClient;
+    this.http = Http;
   }
 
   fetchCharacters() {
-    this.HttpClient.get('https://swapi.co/api/people/')
+    this.http.get('https://swapi.co/api/people/')
     .map((response: Response ) => {
       const data = response;
-      const extractedChars = data.results;
+      const extractedChars = data.result;
       const chars = extractedChars.map((char) => {
              return {name: char.name, side: ''};
           });
