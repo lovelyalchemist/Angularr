@@ -30,7 +30,7 @@ export class StarWarsService {
     this.http.get('https://swapi.co/api/people/')
     .map((response: Response ) => {
       const data = response;
-      const extractedChars = data.result;
+      const extractedChars = data.results;
       const chars = extractedChars.map((char) => {
              return {name: char.name, side: ''};
           });
