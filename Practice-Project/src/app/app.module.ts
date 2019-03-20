@@ -12,9 +12,6 @@ import { NotFoundComponent } from './not-found/not-found.component';
 
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
-import { CreateCharacterComponent } from './create-character/create-character.component';
-import { FormsModule } from '@angular/forms';
-
 
 @NgModule({
   declarations: [
@@ -23,14 +20,12 @@ import { FormsModule } from '@angular/forms';
     ListComponent,
     ItemComponent,
     NotFoundComponent,
-    CreateCharacterComponent,
     HeaderComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    FormsModule
   ],
   providers: [StarWarsService, LogService],
   bootstrap: [AppComponent]
